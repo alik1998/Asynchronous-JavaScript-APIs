@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Callback Functions</title>
+</head>
+
+<body>
+  <script>
+    //   <!-- //uyarı gönderme işlemlerinden birisidir. -->
+    //   bu işlemler şu şekildedir callback, promise, asyc-await
+
+    console.log("start");
+
+    const serverStatus = false;
+    //
+
+    const login = (username, password) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (serverStatus) {
+            resolve({ username: username, email: "akurtkovan@gmail.com" });
+          } else {
+            reject("server is ofline");
+          }
+
+        }, 1000);
+      })
+
+    };
+
+
+    const getPostsByUsername = (username) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          setTimeout(() => {
+            resolve(["post 1", "post 2", "pst 3"]);
+          }, 2000);
+        }, 1000);
+      })
+
+    };
+
+    const getPostDetails = (post) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          setTimeout(() => {
+            resolve("post details");
+          }, 1000);
+        }, 1000);
+      })
+
+    };
+
+    //sync
+    
+    async function  displayUser() {
+     
+      
+      try {
+        const user = await login("ali kurtkpvan", "123456"); 
+      //await buradan gelecek değeri bekliyorum ve 
+      console.log(user);
+
+      const posts = await getPostsByUsername(user.username);
+      console.log(posts);
+
+      const details = await getPostDetails(posts[0]);
+      console.log(details);
+      }
+      catch(err) {
+        console.log(err);
+      }
+      
+
+    }
+    displayUser();
+
+
+
+
+
+
+    console.log("end");
+
+  </script>
+</body>
+
+</html>

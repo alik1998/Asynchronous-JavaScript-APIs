@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Callback Functions</title>
+  </head>
+  <body>
+    <script>
+      //   <!-- //uyarı gönderme işlemlerinden birisidir. -->
+      //   bu işlemler şu şekildedir callback, promise, asyc-await
+
+      console.log("start");
+
+      const login = (username, password, callback) => {
+        setTimeout(() => {
+          callback({ username: username, email: "akurtkovan@gmail.com" });
+        }, 1000);
+      };
+
+      const getPostsByUsername = (username, callback) => {
+        setTimeout(() => {
+          callback(["post 1", "post 2", "pst 3"]);
+        }, 2000);
+      };
+
+      const getPostDetails = (post, callback) => {
+        setTimeout(() => {
+          callback("post details");
+        }, 1000);
+      };
+
+      login("ali kurtkovan", "123", (user) => {
+        console.log(user.username);
+        console.log(user.email);
+
+        getPostsByUsername(user.username, (posts) => {
+          console.log(posts);
+
+          getPostDetails(posts[0], (details) => {
+            console.log(details);
+          });
+        });
+      });
+
+      console.log("end");
+    </script>
+  </body>
+</html>

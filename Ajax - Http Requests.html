@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajax - Http Requests</title>
+  </head>
+  <body>
+    <script>
+      //   callback yöntemini api üzerinde göreceğiz
+      //   javasicript ile servise sorgu gönderme yöntemine ajax denirÖ
+      //   <!-- xml, json -->
+      //   public api seklinde bir arama yapıp github üzerinden bir public api bulunabilir
+
+      const request = new XMLHttpRequest();
+
+      request.open("GET", "https://restcountries.com/v3.1/name/turkey");
+      request.send();
+
+      //async
+
+      request.addEventListener("load", function () {
+        const data = this.responseText;
+        console.log(typeof data);
+        // string to json
+      });
+    </script>
+  </body>
+</html>
